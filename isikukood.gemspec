@@ -8,10 +8,13 @@ Gem::Specification.new do |gem|
   gem.summary       = ""
   gem.homepage      = "http://github.com/noonius/isikukood"
 
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
-  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.test_files    = `git ls-files -- test/*`.split("\n")
   gem.name          = "isikukood"
   gem.require_paths = ["lib"]
   gem.version       = Isikukood::VERSION
+  
+  gem.add_development_dependency 'riot',    '~> 0.12.3'
+  gem.add_development_dependency 'rr',      '~> 1.0.2'
+  gem.add_development_dependency 'rake'
 end
