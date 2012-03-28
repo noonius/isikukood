@@ -9,7 +9,7 @@ class Isikukood
   end
   
   def valid?
-    code.size == 11 && code[10].to_i == control_code && birth_date.is_a?(Date)
+    code.size == 11 && code[10].chr.to_i == control_code && birth_date.is_a?(Date)
   end
   
   def birthday
@@ -19,7 +19,7 @@ class Isikukood
   
   def age
     return nil unless valid?
-    now = Time.now.utc.to_date
+    now = Time.now.utc
     correction = now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day) ? 0 : 1
     now.year - birth_date.year - correction
   end
@@ -31,11 +31,11 @@ class Isikukood
   
   def control_code
     scales1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
-    checknum = scales1.each_with_index.map {|scale, i| code[i].to_i * scale}.inject(0, :+) % 11
+    checknum = scales1.each_with_index.map {|scale, i| code[i].chr.to_i * scale}.inject(0, :+) % 11
     return checknum unless checknum == 10
     
     scales2 = [3, 4, 5, 6, 7, 8, 9, 1, 2, 3]
-    checknum = scales2.each_with_index.map {|scale, i| code[i].to_i * scale}.inject(0, :+) % 11
+    checknum = scales2.each_with_index.map {|scale, i| code[i].chr.to_i * scale}.inject(0, :+) % 11
     checknum == 10 ? 0 : checknum
   end
   
@@ -43,7 +43,7 @@ class Isikukood
   
   def birth_date
     year, month, day = code[1..2].to_i, code[3..4].to_i, code[5..6].to_i
-    Date.valid_date?(year, month, day) ? Date.parse("#{year}-#{month}-#{day}") : nil
+    Date.valid_date?(year, month, day) ? Date.strptime("#{year}-#{month}-#{day}", '%y-%m-%d') : nil
   end
   
 end
