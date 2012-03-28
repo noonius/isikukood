@@ -2,7 +2,7 @@ require 'riot'
 require 'riot/rr'
 require File.expand_path('../../lib/isikukood',__FILE__)
 
-Riot.pretty_dots
+#Riot.pretty_dots
 
 class Riot::Situation
   # Custom situation code here

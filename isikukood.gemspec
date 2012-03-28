@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = `git ls-files -- test/*`.split("\n")
   gem.name          = "isikukood"
   gem.require_paths = ["lib"]
-  gem.version       = Isikukood::VERSION
+  gem.version       = '0.0.1'
   
   gem.add_development_dependency 'riot',    '~> 0.12.3'
   gem.add_development_dependency 'rr',      '~> 1.0.2'
