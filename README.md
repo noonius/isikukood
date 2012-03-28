@@ -1,6 +1,7 @@
 # Isikukood
 
-TODO: Write a gem description
+Simple Ruby library for validating and extracting information from Estonian Personal Identification Code.
+Know-how is taken from appropriate wiki page: http://et.wikipedia.org/wiki/Isikukood
 
 ## Installation
 
@@ -18,7 +19,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'isikukood'
+
+code = Isikukood.new('37605030299')
+code.valid?   # => true
+code.sex      # => 'M'
+code.age      # => 35
+code.birthday # => '1976-05-03'
+```
 
 ## Contributing
 

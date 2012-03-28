@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Tanel Kosk"]
   gem.email         = ["tanel@noonius.net"]
   gem.description   = "Estonian personal identification number validator"
-  gem.summary       = ""
+  gem.summary       = "Ruby gem to validate and extract information out of Estonian Personal Identification number"
   gem.homepage      = "http://github.com/noonius/isikukood"
 
   gem.files         = `git ls-files`.split("\n")
