@@ -29,7 +29,7 @@ class Isikukood
     code[0].to_i.odd? ? 'M' : 'F'
   end
   
-  #private
+  private
   
   def control_code
     scales1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
