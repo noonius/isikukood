@@ -8,7 +8,7 @@ context "Isikukood" do
     }
     
     asserts(:valid?)
-    asserts(:age).equals(35)
+    asserts(:age).equals(36)
     asserts(:sex).equals('M')
     asserts(:birthday).equals('1976-05-03')
   end
@@ -23,6 +23,16 @@ context "Isikukood" do
     asserts(:age).equals(11)
     asserts(:sex).equals('F')
     asserts(:birthday).equals('2000-12-24')
+  end
+  
+  context "Valid age for person born before 1969" do
+    
+    setup {
+      Isikukood.new('46708222728')
+    }
+    
+    asserts(:age).equals(45)
+    asserts(:birthday).equals('1967-08-22')
   end
   
   context "Invalid code" do

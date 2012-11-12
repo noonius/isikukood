@@ -29,6 +29,8 @@ class Isikukood
     code[0].to_i.odd? ? 'M' : 'F'
   end
   
+  #private
+  
   def control_code
     scales1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
     checknum = scales1.each_with_index.map {|scale, i| code[i].chr.to_i * scale}.inject(0, :+) % 11
@@ -39,11 +41,17 @@ class Isikukood
     checknum == 10 ? 0 : checknum
   end
   
-  private
-  
   def birth_date
-    year, month, day = code[1..2].to_i, code[3..4].to_i, code[5..6].to_i
-    Date.valid_date?(year, month, day) ? Date.strptime("#{year}-#{month}-#{day}", '%y-%m-%d') : nil
+    year, month, day = century + code[1..2].to_i, code[3..4].to_i, code[5..6].to_i
+    Date.valid_date?(year, month, day) ? Date.strptime("#{year}-#{month}-#{day}", '%Y-%m-%d') : nil
   end
   
+  def century
+    case code[0].chr.to_i
+    when 1..2 then 1800
+    when 3..4 then 1900
+    else
+      2000
+    end
+  end
 end
